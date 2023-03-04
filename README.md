@@ -1,1 +1,1 @@
-# -decentralized-storage
+# decentralized-storage
