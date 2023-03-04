@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "ipfs-http-client": "^60.0.0",
+    "nodemon": "^2.0.21"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "this is the backend service",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
