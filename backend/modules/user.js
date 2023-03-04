@@ -36,7 +36,7 @@ var userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    purchases: {
+    fileUploads: {
       type: Array,
       default: [],
     },
