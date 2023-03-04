@@ -9,7 +9,11 @@
     "express-validator": "^6.15.0",
     "formidable": "^2.1.1",
     "i": "^0.3.7",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "ipfs-http-client": "^60.0.0",
+    "morgan": "^1.9.1",
+    "mongoose": "^7.0.0",
     "nodemon": "^2.0.21",
     "uuid": "^9.0.0"
   },
