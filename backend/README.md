@@ -31,6 +31,14 @@ Start the server
   npm run start
 ```
 
+## Software Requried
+
+
+
+**API:** Postman
+**DATABASE:** mongodb, Robo3t studio
+
+
 
 ## Tech Stack
 
