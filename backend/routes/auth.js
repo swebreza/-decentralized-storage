@@ -5,6 +5,7 @@ const { signout, signup } = require('../controllers/auth')
 
 router.post(
   '/signup',
+  // user Validation Check
   [
     // username must be at least 3 chars long
     check('name', 'Name Should be  at least 3 character').isLength({

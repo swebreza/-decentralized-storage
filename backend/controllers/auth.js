@@ -2,7 +2,9 @@ const { validationResult } = require('express-validator')
 const User = require('../modules/user')
 
 exports.signup = (req, res) => {
+  // user validation Check Result
   const errors = validationResult(req)
+  // if error is present
   if (!errors.isEmpty()) {
     return res.status(422).json({
       error: errors.array()[0].msg,
