@@ -28,8 +28,19 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
+
+## Software Requried
+
+
+
+**API:** Postman
+
+
+
+**DATABASE:** mongodb, Robo3t studio
+
 
 
 ## Tech Stack
