@@ -1,4 +1,6 @@
 const { validationResult } = require('express-validator')
+var jwt = require('jsonwebtoken')
+var { expressjwt: expressJwt } = require('express-jwt')
 const User = require('../modules/user')
 
 exports.signup = (req, res) => {
@@ -29,11 +31,63 @@ exports.signup = (req, res) => {
     })
 }
 
+exports.signin = (req, res) => {
+  const { email, password } = req.body
+  const errors = validationResult(req)
+  // if error is present
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      error: errors.array()[0].msg,
+    })
+  }
+  // finds exactly 1 email
+  User.findOne({ email })
+    .then((result) => {
+      // handle the result
+      // Create Token
+      const token = jwt.sign({ _id: result._id }, process.env.SECRET)
+
+      // put token in cookie
+      res.cookie('token', token, { expire: new Date() + 9999 })
+
+      // send response to frontend
+      const { _id, name, email, role } = result
+      return res.json({ token, result: { _id, name, email, role } })
+    })
+    .catch((err) => {
+      // handle the error
+      // error message if no email is found
+      if (err) {
+        return res.status(400).json({
+          error: 'User Email or Password Does Not Exist',
+        })
+      }
+    })
+  // User.findOne({ email }, (err, user) => {})
+}
+
 exports.signout = (req, res) => {
+  res.clearCookie('token')
   res.json({
-    message: 'User Signout',
+    message: 'User Sign out Successfully',
   })
 }
+
+// Protector Routes
+exports.isSignedIn = expressJwt({
+  secret: process.env.SECRET,
+  algorithms: ['HS256'],
+  userProperty: 'auth',
+})
+
+// Custom Middleware
+
+// // If authentication fails
+// if (!user.authenticate(password)) {
+//   return res.status(401).json({
+//     error: 'Email and Password is do not match!!!',
+//   })
+// }
 
 // (err, user) => {
 // if (err) {
