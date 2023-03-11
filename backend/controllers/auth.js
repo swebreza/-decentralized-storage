@@ -81,6 +81,23 @@ exports.isSignedIn = expressJwt({
 })
 
 // Custom Middleware
+exports.isAuthenticated = (req, res, next) => {
+  let check = req.profile && req.auth && req.profile._id === req.auth._id //TODO: req.profile will be set from frontend
+  if (!check) {
+    return res.status(403).json({
+      error: 'Access Denied!!!',
+    })
+  }
+  next()
+}
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.role === 0) {
+    return res.status(403).json({
+      error: 'You are not ADMIN, ACCESS DENIED!!!',
+    })
+  }
+  next()
+}
 
 // // If authentication fails
 // if (!user.authenticate(password)) {
