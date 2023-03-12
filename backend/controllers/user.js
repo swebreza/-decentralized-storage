@@ -27,6 +27,24 @@ exports.getUser = (req, res) => {
   return res.json(req.profile)
 }
 
+// Getting All Users
+exports.getAllUser = (req, res) => {
+  // console.log('HIT')
+  User.find()
+    .then((result) => {
+      return res.json(result)
+      // next()
+    })
+    .catch((err) => {
+      error: 'No User In The Database'
+    })
+
+  // .populate({
+  //   path: 'user',
+  //   select: 'email',
+  // })
+}
+
 // .exec((err, user) => {
 //   if (err || !user) {
 //     return res.status(400).json({
