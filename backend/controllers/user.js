@@ -27,30 +27,39 @@ exports.getUser = (req, res) => {
   return res.json(req.profile)
 }
 
-// Getting All Users
-exports.getAllUser = (req, res) => {
-  // console.log('HIT')
-  User.find()
+// TODO:Getting All Users
+// exports.getAllUser = (req, res) => {
+//   // console.log('HIT')
+//   User.find()
+//     .then((result) => {
+//       return res.json(result)
+//       // next()
+//     })
+//     .catch((err) => {
+//       error: 'No User In The Database'
+//     })
+
+//   // .populate({
+//   //   path: 'user',
+//   //   select: 'email',
+//   // })
+// }
+
+exports.updateUser = (req, res) => {
+  id = req.profile._id
+  User.findByIdAndUpdate(
+    { _id: id },
+    { $set: req.body },
+    { new: true, useFiendAndModify: false }
+  )
     .then((result) => {
+      result.salt = undefined //done
+      result.encry_password = undefined //done
       return res.json(result)
-      // next()
     })
     .catch((err) => {
-      error: 'No User In The Database'
+      return res.json({
+        err: 'you are not authorized',
+      })
     })
-
-  // .populate({
-  //   path: 'user',
-  //   select: 'email',
-  // })
 }
-
-// .exec((err, user) => {
-//   if (err || !user) {
-//     return res.status(400).json({
-//       error: 'No User was Found in DB',
-//     })
-//   }
-//   req.profile = user
-//   next()
-// })
