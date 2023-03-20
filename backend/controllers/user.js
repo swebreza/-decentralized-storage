@@ -1,4 +1,5 @@
 const User = require('../modules/user')
+// const File = require('../modules/file')
 
 exports.getUserById = (req, res, next, id) => {
   // const { _id } = req.body //Debugging
@@ -63,3 +64,17 @@ exports.updateUser = (req, res) => {
       })
     })
 }
+
+// exports.userUploadList = (req, res) => {
+//   id = req.profile._id
+//   Order.find({ User: req.profile._id })
+//     .populate('User', '_id name ')
+//     .exec((err, order) => {
+//       if (err) {
+//         return res.status(400).json({
+//           error: 'No Order in this account',
+//         })
+//       }
+//       return res.json(order)
+//     })
+// }
