@@ -9,6 +9,7 @@ const cors = require('cors')
 // My Routes
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
+const ipfsRoutes = require('./routes/ipfs')
 
 // DataBase Connection
 mongoose.connect(process.env.DATABASE).then(() => {
@@ -27,6 +28,7 @@ app.use(cors())
 // routes
 app.use('/api', authRoutes)
 app.use('/api', userRoutes)
+app.use('/api', ipfsRoutes)
 app.get('/', (req, res) => {
   return res.send('Hello There!!!!')
 })
